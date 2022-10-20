@@ -1,0 +1,67 @@
+.logo {
+    height: 100px;
+    width: 150px;
+    margin: 5px;
+}
+
+.nav-item {
+    padding-left: 100px;
+    padding-right: 70px;
+}
+
+.t1{
+    align-items: center;
+    padding-left: 455px;
+}
+
+.mb-3{
+    margin: 40px;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.btn-primary{
+    margin: 40px;
+    margin-left: 400px;
+}
+
+.btn1{
+    margin-left: 300px;
+}
+
+.nav-link1{
+    margin-left: 400px;
+}
+
+.btn-lg{
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    margin: 30px;
+    margin-right: 100px;
+}
+.dest_name{
+    position: fixed;
+    top:129px;
+    right: 80px;
+}
+.number_days{
+    position: fixed;
+    top:180px;
+    right: 80px;
+}
+
+.my-212 {
+    position: fixed;
+    top: 180px;
+    right: 80px;
+}
+
+/* .accordion{
+    top:800px;
+    position: fixed;
+} */
+
+.col{
+    top:100px;
+}
