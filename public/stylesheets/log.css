@@ -65,3 +65,8 @@
 .col{
     top:100px;
 }
+
+.list_of_destinations{
+    padding:30px;
+    /* text-color: black; */
+}

@@ -20,6 +20,29 @@ router.get('/register', function(req, res, next){
   res.render('register');
 });
 
+router.get('/list-of-destinations', async function(req, res,next){
+  const destination=await Plan.find();
+  res.render('destinations', {destinations:destination});
+});
+
+router.get('/individual', async function(req, res, next){
+  const destin=req.body.destination_name;
+  console.log(destin)
+  const destination=await Plan.find({destination_name:destin});
+  res.render('searchResult',{destinations:destination, title:destin});
+})
+
+router.get('/no-user-list-of-destinations', async function(req, res,next){
+  const destination=await Plan.find();
+  res.render('noUserDestinations', {destinations:destination});
+});
+
+router.get('/no-user-individual', async function(req, res, next){
+  const destin=req.body.destination_name;
+  console.log(destin)
+  const destination=await Plan.find({destination_name:destin});
+  res.render('noLogsearchResult',{destinations:destination, title:destin});
+})
 
 router.post('/upload', function(req, res, next){
   const travel=new Travel(req.body);
@@ -70,14 +93,14 @@ router.post('/search-result', async(req, res)=>{
     // console.log(destination.length())
     if(destination)
     {
-      res.render('searchResult',{destinations:destination});
+      res.render('searchResult',{destinations:destination, title:dest_name});
     }
     else{
-      res.render('searchResult2')
+      res.render('searchResult2');
     }
   }
   catch(err){
-    res.status(400).send("Invalid email")
+    res.status(400).send("Error")
   }
   
   // res.render('searchResult');
@@ -91,14 +114,14 @@ router.post('/no-user-search-result', async(req, res)=>{
     // console.log(destination.length())
     if(destination)
     {
-      res.render('noLogsearchResult',{destinations:destination});
+      res.render('noLogsearchResult',{destinations:destination, title:dest_name});
     }
     else{
       res.render('noLogsearchResult2')
     }
   }
   catch(err){
-    res.status(400).send("Invalid email")
+    res.status(400).send("Error")
   }
   
 })
@@ -112,16 +135,35 @@ router.post('/filtering-date', async(req, res)=>{
     // console.log(destination.length())
     if(destination)
     {
-      res.render('searchResult',{destinations:destination});
+      res.render('searchResult',{destinations:destination, title:destName});
     }
     else{
-      res.render('noLogsearchResult2')
+      res.render('searchResult2')
     }
   }
   catch(err){
-    res.status(400).send("Invalid email")
+    res.status(400).send("Error");
   }
-  
+})
+
+router.post('/no-user-filtering-date', async(req, res)=>{
+  try{
+    const destName=req.body.destination_name;
+    const numb_days=req.body.number_of_days;
+    const destination=await Plan.find({num_of_days:numb_days, destination_name:destName});
+    console.log(destination)
+    // console.log(destination.length())
+    if(destination)
+    {
+      res.render('noLogsearchResult',{destinations:destination, title:destName});
+    }
+    else{
+      res.render('noLogsearchResult2');
+    }
+  }
+  catch(err){
+    res.status(400).send("Error")
+  }
 })
 
 router.get('/add-a-plan', function(req, res, next){
